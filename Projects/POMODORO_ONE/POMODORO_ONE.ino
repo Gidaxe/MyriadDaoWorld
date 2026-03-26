@@ -63,7 +63,7 @@ void loop() {
     else lcd.print(" |");
 
     // 🟩 Second row: centered time
-    lcd.setCursor(3, 1);
+    lcd.setCursor(4, 1);
 
     // Leading zeros (important)
     if (h < 10) lcd.print("0");
@@ -88,5 +88,6 @@ void loop() {
 }
 
 //TODO:
-//Issues with missfires (maybe due to detecton on high instead of low) and need to add the second button
-// menu to pick between: contrast, stopwatch, 
+// menu to pick between: contrast, stopwatch
+//center the clock (Done)
+//create new clock designs
