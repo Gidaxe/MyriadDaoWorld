@@ -8,7 +8,6 @@ int contrast = initialContrast;
 int contrastPin = 9;
 int contrastButton = 7;
 
-unsigned long start = millis();
 unsigned long t_pressed = 0;
 int s_tot = 0;
 int s = 0;
@@ -17,6 +16,7 @@ int h = 0;
 
 bool s_pair;
 bool lap = 1;
+bool menu = 0;
 int press_trigger_lap = 10000;
 
 void setup() {
@@ -29,12 +29,11 @@ void setup() {
 
 void loop() {
 
+  //Button handling (choose mode)
   if (digitalRead(contrastButton) == HIGH) {
 
     if (t_pressed == 0) t_pressed = millis();
-    else {
-      if (millis() - t_pressed > press_trigger_lap) lap = 0;
-    }
+    else if ((millis() - t_pressed > press_trigger_lap)) menu = 1;
 
     contrast += 5;
     delay(200);
