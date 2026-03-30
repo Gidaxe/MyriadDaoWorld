@@ -96,7 +96,6 @@ void update_lap_history(char* lap) {
 
   previous_lap->name = lap;
   previous_lap->next = new_lap;
-  if (previous_lap->name != NULL) Serial.println(previous_lap->name);
 
   previous_lap = new_lap;
 }
@@ -127,8 +126,6 @@ Mode handle_history_event() {
   ClickType click = click_handler();
 
   if (click == SHORT_PRESS) {
-    Serial.println(selected_lap->name);
-    Serial.println(selected_lap->next->name);
     if (selected_lap -> next != NULL) selected_lap = selected_lap -> next;
     else selected_lap = &head;
     lcd.clear();
@@ -195,7 +192,6 @@ Mode reset_clock(int s, int m, int h) {
   update_lap_history(lap_copy);
 
   clock_start = millis();
-  //Serial.println(lap);
   return STOPWATCH;
 }
 
@@ -252,9 +248,6 @@ void display_contrast() {
   analogWrite(contrast_pin, contrast);
 
   contrast_bar_level = contrast / 8;
-  // Serial.print(contrast);
-  // Serial.print(" ");
-  // Serial.println(contrast_bar_level);
 
   lcd.setCursor(4, 0);
   lcd.print("CONTRAST");
@@ -280,7 +273,6 @@ Mode handle_contrast_event() {
   else if (click == SHORT_PRESS) {
     lcd.clear();
     contrast += 8;
-    Serial.println(contrast);
     return CONTRAST;
   }
 } 
@@ -331,11 +323,6 @@ void loop() {
     case STOPWATCH:
       display_clock(time);
       current_mode = handle_clock_event();
-      // Serial.print(clock_start);
-      // Serial.print(" ");
-      // Serial.print(m);
-      // Serial.print(" ");
-      // Serial.println(time);
       break;
 
     case MENU:
