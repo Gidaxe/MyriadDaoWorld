@@ -36,7 +36,8 @@ Mode current_mode = STOPWATCH;
 
 typedef struct node {
     char *name;
-    Mode data;
+    char *lap;
+    Mode mode;
     struct node *next;
 } Node;
 
@@ -56,8 +57,9 @@ int contrast_bar_level = 0;
 int min_luminosity = 128;
 
 // Lap History
-char lap_history[35][10];
-
+Node *previous_lap;
+Node *selected_lap;
+Node head;
 
 //Hardware
 ClickType click_handler() {
@@ -86,16 +88,61 @@ ClickType click_handler() {
 
 
 //Lap History
-void update_lap_history(char* lap_history) {
-  //updates the lap history with data from the stopwatch
+void update_lap_history(char* lap) {
+  //updates the lap history with mode from the stopwatch
+  Node *new_lap =malloc(sizeof(Node));
+  new_lap->name = NULL;
+  new_lap->next = NULL;
+
+  previous_lap->name = lap;
+  previous_lap->next = new_lap;
+  if (previous_lap->name != NULL) Serial.println(previous_lap->name);
+
+  previous_lap = new_lap;
 }
 
-void display_lap_history(char* lap_history) {
+void display_lap_history() {
   //displays and allows us to browse through the lap history
+  //display selected_lap and it's next lap. When at the end of the chain list, go back to &head
+  if (selected_lap->name != NULL) {  
+    lcd.setCursor(1, 0);
+    lcd.print(selected_lap->name); //handle case of head not initialized
+    }
+  else {
+    lcd.setCursor(0, 0);
+    lcd.print("                ");
+  }
+  // if (selected_lap->next != NULL) {
+  //   lcd.setCursor(1, 1);
+  //   lcd.print(selected_lap->next->name);
+  // }
+  // else {
+  //   lcd.setCursor(0, 1);
+  //   lcd.print("                ");
+  // }
 }
 
 Mode handle_history_event() {
   //handles button presses when in lap history mode
+  ClickType click = click_handler();
+
+  if (click == SHORT_PRESS) {
+    Serial.println(selected_lap->name);
+    Serial.println(selected_lap->next->name);
+    if (selected_lap -> next != NULL) selected_lap = selected_lap -> next;
+    else selected_lap = &head;
+    lcd.clear();
+    return LAP_HISTORY;
+  }
+
+  else if (click == NO_EVENT) {
+    return LAP_HISTORY;
+  }
+
+  else if (click == LONG_PRESS) {
+    lcd.clear();
+    return MENU;
+  }
 }
 
 
@@ -140,11 +187,15 @@ void display_clock(unsigned long time) {
 Mode reset_clock(int s, int m, int h) {
   //resets the pomodoro lap to 0 and sends the ended lap info to lap history
   char lap[10];
-  snprintf(lap, sizeof(lap), "%02d:%02d:%02d", s, m, h);
-  update_lap_history(lap);
+  snprintf(lap, sizeof(lap), "%02d:%02d:%02d", h, m, s);
+
+  char *lap_copy = malloc(sizeof(lap));
+  strcpy(lap_copy, lap);
+
+  update_lap_history(lap_copy);
 
   clock_start = millis();
-  Serial.println(clock_start);
+  //Serial.println(lap);
   return STOPWATCH;
 }
 
@@ -183,7 +234,7 @@ Mode handle_menu_event() {
 
   else if (click == LONG_PRESS) {
     lcd.clear();
-    return selected_mode ->data;
+    return selected_mode ->mode;
   }
 }
 
@@ -201,9 +252,9 @@ void display_contrast() {
   analogWrite(contrast_pin, contrast);
 
   contrast_bar_level = contrast / 8;
-  Serial.print(contrast);
-  Serial.print(" ");
-  Serial.println(contrast_bar_level);
+  // Serial.print(contrast);
+  // Serial.print(" ");
+  // Serial.println(contrast_bar_level);
 
   lcd.setCursor(4, 0);
   lcd.print("CONTRAST");
@@ -240,22 +291,30 @@ void setup() {
   lcd.begin(16, 2);
   Serial.begin(9600);
 
+  analogWrite(contrast_pin, initial_contrast);
+
   pinMode(contrast_pin, OUTPUT);
   pinMode(button, INPUT);
 
   stopwatch_mode.name = "STOPWATCH MODE";
-  stopwatch_mode.data = STOPWATCH;
+  stopwatch_mode.mode = STOPWATCH;
   stopwatch_mode.next = &contrast_mode;
 
   contrast_mode.name = "CONTRAST MODE";
-  contrast_mode.data = CONTRAST;
+  contrast_mode.mode = CONTRAST;
   contrast_mode.next = &lap_history_mode;
 
   lap_history_mode.name = "LAP HISTORY";
-  lap_history_mode.data = LAP_HISTORY;
+  lap_history_mode.mode = LAP_HISTORY;
   lap_history_mode.next = &stopwatch_mode;
 
   selected_mode = &stopwatch_mode;
+
+  head.name = NULL;
+  head.next = NULL;
+
+  previous_lap = &head;
+  selected_lap = &head;
 
 }
 
@@ -290,7 +349,8 @@ void loop() {
       break;
 
     case LAP_HISTORY:
-      current_mode = STOPWATCH;
+      display_lap_history();
+      current_mode = handle_history_event();
       break;
   }
 
