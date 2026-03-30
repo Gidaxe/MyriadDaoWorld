@@ -18,12 +18,12 @@ int time;
 int s = 0;
 int m = 0;
 int h = 0;
-int long_press_threshold = 5000;
+int long_press_threshold = 3000;
 bool s_pair;
 
 // Menu
 unsigned long time_buffer = 0;
-int time_buffer_threshold = 2000;
+int time_buffer_threshold = 1000;
 
 typedef enum {
   STOPWATCH,
@@ -50,8 +50,10 @@ Node lap_history_mode;
 
 
 // Contrast
-int initial_contrast = 10;
+int initial_contrast = 64;
 int contrast = initial_contrast;
+int contrast_bar_level = 0;
+int min_luminosity = 128;
 
 // Lap History
 char lap_history[35][10];
@@ -193,15 +195,45 @@ void display_menu(Node *selected_mode) {
 
 
 //Contrast
-void display_contrast(int contrast) {
+void display_contrast() {
   //displays the current contrast of the lcd screen
-  if (contrast >= 130) contrast = initial_contrast;
+  if (contrast > min_luminosity) contrast = 0;
   analogWrite(contrast_pin, contrast);
+
+  contrast_bar_level = contrast / 8;
+  Serial.print(contrast);
+  Serial.print(" ");
+  Serial.println(contrast_bar_level);
+
+  lcd.setCursor(4, 0);
+  lcd.print("CONTRAST");
+
+  for (int i = 0; i < contrast_bar_level; i++) {
+    lcd.setCursor(i, 1);
+    lcd.write(255);
+  }
 }
 
 Mode handle_contrast_event() {
   //handles button presses when in menu mode
-}
+  ClickType click = click_handler();
+  if (click == LONG_PRESS) {
+    lcd.clear();
+    return MENU;
+  }
+
+  else if (click == NO_EVENT) {
+    return CONTRAST;
+  }
+
+  else if (click == SHORT_PRESS) {
+    lcd.clear();
+    contrast += 8;
+    Serial.println(contrast);
+    return CONTRAST;
+  }
+} 
+
 
 void setup() {
   //Initial setup
@@ -253,7 +285,8 @@ void loop() {
       break;
 
     case CONTRAST:
-      current_mode = STOPWATCH;
+      display_contrast();
+      current_mode = handle_contrast_event();
       break;
 
     case LAP_HISTORY:
