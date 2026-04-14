@@ -1,0 +1,1 @@
+Pomodoro One is an embedded microcontroller project designed to support productivity through multiple timing modes, including a Pomodoro timer, stopwatch, and lap tracking. It features an LCD interface and responsive user controls, and showcases practical skills in embedded programming, real-time timing, and efficient system design.
