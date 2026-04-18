@@ -1,0 +1,45 @@
+# Pour verifier si le fichier user-data a été execute au démarrage 
+"sudo cat /var/log/cloud-init-output.log"
+
+# This will show you the exact error from the yum install command
+
+To display a file in cmd use ##### type "filename" #####
+
+To create unique variables and cheat your app into idempotence:
+You can add a unique identifier at the end: $EPOCHSECONDS"
+
+
+aws ec2 terminate-instances --instance-ids <Instance ID>
+aws ec2 delete-security-group --group-id <Security Group ID>
+
+
+##### python3 -m pip install ansible boto3 botocore --user #####
+"--user" installs packages only for your user account
+Packages go into something like:
+~/.local/lib/python3.x/site-packages
+It does not touch system Python or distro-managed packages (apt, dnf, etc.)
+👉 So you avoid the classic “pip broke my OS Python” problem. Good practice.
+
+
+
+One smart move before going further (strongly recommended)
+
+Freeze this working setup so you can always come back to it:
+
+##### pip freeze > requirements.txt #####
+
+If anything explodes later, you’ll be able to recover in 30 seconds.
+
+
+
+To start a local server:
+cd path/to/repo
+# Python 3
+python -m http.server 8000
+
+Then go to : "http://localhost:8000/file"
+
+
+##### git remote -v #####
+##### git remote set-url origin https://repo.git #####
+##### git status #####

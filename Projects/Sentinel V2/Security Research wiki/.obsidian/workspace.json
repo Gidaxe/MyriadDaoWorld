@@ -1,0 +1,234 @@
+{
+  "main": {
+    "id": "828764f79eb793f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "c9374fa9f771873a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "30637ced51e4abb9",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      },
+      {
+        "id": "4ec1afeea2bf3fa1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "53f1e2bb5018a685",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "db45bfc0ad0a870d",
+    "type": "split",
+    "children": [
+      {
+        "id": "38fa5e98711d626c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb92082881d77b18",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "407588ed26c7ad98",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "1b2b53e1a3990d01",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d55fcbb701edf7e9",
+    "type": "split",
+    "children": [
+      {
+        "id": "7cb50bf83f009168",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "475d6d6311141bdb",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "CLAUDE.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for CLAUDE"
+            }
+          },
+          {
+            "id": "a493d282f7854547",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "CLAUDE.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from CLAUDE"
+            }
+          },
+          {
+            "id": "39affca5b93a086f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "5bec8cabbd0d9934",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "144a65686909a54c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CLAUDE.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of CLAUDE"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "30637ced51e4abb9",
+  "lastOpenFiles": [
+    "wiki/forensic-tools.md",
+    "wiki/non-lethal-weapons.md",
+    "wiki/surveillance-drones.md",
+    "wiki/police-equipment.md",
+    "wiki/vigilante-groups.md",
+    "wiki/network-centric-operations.md",
+    "wiki/defence-space-agency.md",
+    "wiki/telepresence.md",
+    "wiki/c4isr.md",
+    "wiki/satellites.md",
+    "wiki/ict.md",
+    "wiki/defence-transformation.md",
+    "wiki/dicon.md",
+    "wiki/vigilantism-nigeria-report.md",
+    "wiki/military-industrial-complex-nigeria.md",
+    "AGENTS.md",
+    "wiki/nigcomsat-1r.md",
+    "wiki/index.md",
+    "Welcome.md",
+    "wiki/military-industrial-complex.md",
+    "wiki/space-based-assets-security.md",
+    "wiki/boko-haram.md",
+    "wiki/nigeriasat-2.md",
+    "wiki/forensic-tools-investigation.md",
+    "wiki/non-lethal-weaponry.md",
+    "wiki/telepresence-technology.md",
+    "raw/report vigiliantees nigeria.pdf",
+    "raw/MIC in Nigeria.pdf",
+    "4913",
+    "opencode.json",
+    "opencode.json~",
+    "raw",
+    "wiki"
+  ]
+}
